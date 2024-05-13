@@ -4,9 +4,10 @@ const inputText = document.querySelector('form input[type="text"]');
 
 //new Tarea(1,"aprender JS",true,contenedorTareas);
 //carga inicial de los datos
-fetch("http://localhost:4000/tareas")
+fetch("https://api-todo-fullstack-0ut2.onrender.com/tareas")
 .then(respuesta => respuesta.json())
 .then(tareas => {
+    console.log(tareas)
     tareas.forEach(({id,tarea,terminada}) => {
         new Tarea(id,tarea,terminada,contenedorTareas);
     });
@@ -19,7 +20,7 @@ formulario.addEventListener("submit",async evento => {
         
         let tarea = inputText.value.trim();
 
-        let {id,error} = await fetch("http://localhost:4000/tareas/nueva", {
+        let {id,error} = await fetch("https://api-todo-fullstack-0ut2.onrender.com/tareas/nueva", {
             method : "POST",
             body : JSON.stringify({tarea}),
             headers : {
